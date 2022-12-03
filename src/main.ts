@@ -21,13 +21,13 @@ async function bootstrap() {
       cookie: {
         httpOnly: true,
         sameSite: 'none',
-        secure: true,
+        secure: false,
       },
       value: (req: Request) => {
         return req.header('csrf-token');
       },
     }),
   );
-  await app.listen(3005);
+  await app.listen(process.env.PORT || 3005);
 }
 bootstrap();
