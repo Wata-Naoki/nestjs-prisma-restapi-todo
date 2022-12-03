@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement()) //useが作るられた時に、自動的にidを生成する
+  createdAt DateTime @default(now()) //useが作られた時に、自動的に日時を生成する
+  updatedAt DateTime @updatedAt //useが更新された時に、自動的に日時を生成する
+  email String @unique //emailはユニークである
+  hashedPassword String
+  tasks Task[]
+}
+
+model Task {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title String
+  description String?
+  userId Int
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
