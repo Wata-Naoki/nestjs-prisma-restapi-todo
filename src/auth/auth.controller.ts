@@ -11,7 +11,7 @@ import {
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
-import { Csrf, Msg } from './interfaces/auth.interface';
+import { Csrf, Msg } from './types/auth.type';
 
 @Controller('auth')
 export class AuthController {
@@ -36,7 +36,7 @@ export class AuthController {
     const jwt = await this.authService.login(dto);
     res.cookie('access_token', jwt.accessToken, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: 'none',
       path: '/',
     });
@@ -50,7 +50,7 @@ export class AuthController {
   logout(@Req() req: Request, @Res({ passthrough: true }) res: Response): Msg {
     res.cookie('access_token', '', {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: 'none',
       path: '/',
     });
