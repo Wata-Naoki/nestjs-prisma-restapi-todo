@@ -16,6 +16,7 @@ model User {
   updatedAt DateTime @updatedAt //useが更新された時に、自動的に日時を生成する
   email String @unique //emailはユニークである
   hashedPassword String
+  nickName String?
   tasks Task[]
 }
 

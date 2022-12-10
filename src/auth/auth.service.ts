@@ -5,7 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuthDto } from './dto/auth.dto';
-import { Msg, Jwt } from './interfaces/auth.interface';
+import { Msg, Jwt } from './types/auth.type';
 
 @Injectable()
 export class AuthService {
