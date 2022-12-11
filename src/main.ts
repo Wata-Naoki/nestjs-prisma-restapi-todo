@@ -21,6 +21,7 @@ async function bootstrap() {
       cookie: {
         httpOnly: true,
         sameSite: 'none',
+        // secure: trueにするとpostmanで動かないのでfalseにしている
         secure: false,
       },
       value: (req: Request) => {

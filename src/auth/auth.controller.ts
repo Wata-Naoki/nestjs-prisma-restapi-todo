@@ -36,6 +36,7 @@ export class AuthController {
     const jwt = await this.authService.login(dto);
     res.cookie('access_token', jwt.accessToken, {
       httpOnly: true,
+      // secure: trueにするとpostmanで動かないのでfalseにしている
       secure: false,
       sameSite: 'none',
       path: '/',
@@ -50,6 +51,7 @@ export class AuthController {
   logout(@Req() req: Request, @Res({ passthrough: true }) res: Response): Msg {
     res.cookie('access_token', '', {
       httpOnly: true,
+      // secure: trueにするとpostmanで動かないのでfalseにしている
       secure: false,
       sameSite: 'none',
       path: '/',
