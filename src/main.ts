@@ -10,10 +10,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.enableCors({
     credentials: true,
-    origin: [
-      'http://localhost:3000',
-      'https://frontend-todo-nextjs.vercel.app',
-    ],
+    origin: ['http://localhost:3000'],
   });
   app.use(cookieParser());
   app.use(
@@ -22,7 +19,7 @@ async function bootstrap() {
         httpOnly: true,
         sameSite: 'none',
         // secure: trueにするとpostmanで動かないのでfalseにしている
-        secure: false,
+        secure: true,
       },
       value: (req: Request) => {
         return req.header('csrf-token');
